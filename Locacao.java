@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Locacao {
     private Cliente cliente;
     private int qntdDias;
+    private boolean finalizado;
     private ArrayList<Equipamento> equipamentos;
 
 
@@ -10,11 +11,23 @@ public class Locacao {
         this.cliente = cliente;
         this.qntdDias =qntdDias;
         equipamentos = new ArrayList<Equipamento>();
+        this.finalizado= false;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+    public int getQntdDias() {
+        return qntdDias;
+    }
     public ArrayList<Equipamento> getEquipamentos() {
         return equipamentos;
     }
+
+
+    public boolean getFinalizado() {
+    return finalizado;
+}
 
    public void adicionarEquipamento(Equipamento equipamento) throws EquipamentoJaAlugadoException, EquipamentoJaEstaNaSuaLocacaoException {
 
@@ -62,7 +75,11 @@ public double registrarDevolucao(int diasUtilizados) {
     for (Equipamento equipamento : equipamentos) {
         equipamento.setDisponivel(true);
     }
+    finalizado=true;
 
     return multa;
 }
+
+
 }
+
