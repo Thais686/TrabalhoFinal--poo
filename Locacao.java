@@ -45,7 +45,25 @@ public double calcularTotal() {
 
     return total;
 }
+    
 
+}
+
+public double registrarDevolucao(int diasUtilizados) {
+
+    int atraso = diasUtilizados - qntdDias;
+
+    double multa = 0;
+
+    if (atraso > 0) {
+        multa = atraso * 5.0;
+    }
+
+    for (Equipamento equipamento : equipamentos) {
+        equipamento.setDisponivel(true);
+    }
+
+    return multa;
 }
 
     
