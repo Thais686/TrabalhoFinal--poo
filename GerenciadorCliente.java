@@ -7,17 +7,20 @@ public class GerenciadorCliente {
         clientesCadastrados = new ArrayList<Cliente>();
     }
 
-    public void cadastrar(Cliente c){
+    public void cadastrar(Cliente c) throws IllegalArgumentException {
+        if (c.getNome().length() < 3) {
+            throw new IllegalArgumentException("Nome do cliente deve ter pelo menos 3 caracteres.");
+        }
         clientesCadastrados.add(c);
     }
 
-    public void consultar(String nome){
+    public void consultar(String nome) throws ClienteNaoEncontradoException{
         for(Cliente c: clientesCadastrados){
             if (c.getNome().equals(nome)){
                 System.out.printf("Cliente %s cadastrado!!\n", nome);
             }
         }
-        System.out.printf("Cliente não cadastrado!\n");
+        throw new ClienteNaoEncontradoException(nome);
     }
 
     public void listar(){
@@ -26,4 +29,3 @@ public class GerenciadorCliente {
     
         }
 }}
-
