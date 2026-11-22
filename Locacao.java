@@ -16,24 +16,22 @@ public class Locacao {
         return equipamentos;
     }
 
-   public void adicionarEquipamento(Equipamento equipamento) {
+   public void adicionarEquipamento(Equipamento equipamento) throws EquipamentoJaAlugadoException, EquipamentoJaEstaNaSuaLocacaoException {
 
     if (!equipamento.isDisponivel()) {
-        System.out.println("Equipamento já está alugado.");
-        return;
+        throw new EquipamentoJaAlugadoException(equipamento.getCodigo());
     }
 
     for (Equipamento e : equipamentos) {
 
         if (e.getCodigo() == equipamento.getCodigo()) {
-            System.out.println("Equipamento já está na locação.");
-            return;
+            throw new EquipamentoJaEstaNaSuaLocacaoException(equipamento.getCodigo());
         }
     }
 
     equipamentos.add(equipamento);
     equipamento.setDisponivel(false);
-}
+   }
 
 public double calcularValorEquipamento(Equipamento e) {
     return e.calcularValor(qntdDias);
@@ -52,5 +50,3 @@ public double calcularTotal() {
 
     
     
-
-
