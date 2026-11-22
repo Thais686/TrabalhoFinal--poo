@@ -36,6 +36,8 @@ public class Locacao {
 public double calcularValorEquipamento(Equipamento e) {
     return e.calcularValor(qntdDias);
 }
+
+
 public double calcularTotal() {
     double total = 0;
 
@@ -46,8 +48,6 @@ public double calcularTotal() {
     return total;
 }
     
-
-}
 
 public double registrarDevolucao(int diasUtilizados) {
 
@@ -65,6 +65,4 @@ public double registrarDevolucao(int diasUtilizados) {
 
     return multa;
 }
-
-    
-    
+}
